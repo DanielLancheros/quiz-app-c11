@@ -20,7 +20,7 @@ export default function QuizApp () {
         // Increment the quizId by 1 once the user clicks on an answer
         const newQuizId = quizId +1;
 
-        /* If the quizId is less than */
+        /* If the quizId is less than the quizLength then set the quizId to the newQuizId. If not show results*/
         (newQuizId < quizLength)
         ? setQuizId(newQuizId)
         : setShowResult(true);
