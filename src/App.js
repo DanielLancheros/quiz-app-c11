@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import QuizApp from './pages/Quiz';
 import Err404 from './pages/Err404';
 import "./components/QuizApp/QuizApp.css"
+import "./styles/App.css"
 
 function App() {
   return (
