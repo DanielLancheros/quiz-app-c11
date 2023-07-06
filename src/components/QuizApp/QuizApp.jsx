@@ -1,9 +1,51 @@
+import { useState } from "react";
+import Card from "./Card";
+import Result from "./Result";
+import data from "../../data/quiz.json";
 import "./QuizApp.css";
 
+const quizLength =data.length
+
 export default function QuizApp () {
+
+    const [quizId, setQuizId] = useState(0);
+    const [score, setScore] = useState(0);
+    const [showResult, setShowResult] = useState(false);
+
+    const handleAnswer = (isCorrect) => {
+        // if (isCorrect) setScore(score +1);
+        // if the answer is correct, increment the score by 1.
+        isCorrect && setScore(score +1);
+
+        // Increment the quizId by 1 once the user clicks on an answer
+        const newQuizId = quizId +1;
+
+        /* If the quizId is less than */
+        (newQuizId < quizLength)
+        ? setQuizId(newQuizId)
+        : setShowResult(true);
+    };
+
+    const handleReset = () => {
+        setQuizId(0);
+        setScore(0);
+        setShowResult(false);
+    };
+
     return(
-        <div className = "quiz-card">
-          <h1>Quiz App</h1>
-        </div>
+        <>
+        {
+            !showResult
+            ? <Card 
+                data={data}
+                quizId={quizId}
+                quizLength={quizLength}
+                handleAnswer={handleAnswer} />
+            : <Result
+                score={score}
+                quizLength={quizLength} 
+                handleReset={handleReset} />
+        }
+        </>
     )
 }
